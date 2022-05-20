@@ -1,0 +1,32 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: data/raw
+      md5: bc61c2dd1230bb5f1bb2cbcf9e21fe87.dir
+      size: 106551228
+      nfiles: 13397
+    - path: src/prepare.py
+      md5: abe1194888cd001177748c38f801ffa2
+      size: 1278
+    outs:
+    - path: data/prepared/test.csv
+      md5: 8f8f812c7a8fcdaf7cfe536d011f428b
+      size: 65180
+    - path: data/prepared/train.csv
+      md5: ad8bb5f145ffda6e7465efaf4bac8b0a
+      size: 162773
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/prepared/train.csv
+      md5: ad8bb5f145ffda6e7465efaf4bac8b0a
+      size: 162773
+    - path: src/train.py
+      md5: 5107c0002149bfdd0f91908a4762af6a
+      size: 1385
+    outs:
+    - path: model/model.joblib
+      md5: 30ad7543839406da9a2362a1f6bb5a42
+      size: 241075
